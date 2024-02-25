@@ -2,7 +2,6 @@ import java.util.Scanner
 
 abstract class NamedList<T> (val name: String) : ArrayList<T>() {
     abstract fun createNewItem()
-    abstract fun process()
     override fun toString(): String {
         return name + super.toString()
     }
@@ -39,12 +38,12 @@ abstract class NamedList<T> (val name: String) : ArrayList<T>() {
         } while (true)
         return iInput
     }
-    fun getNonEmptyText(prompt: String = "\nСоздание нового элемента"): String {
+    fun getNonEmptyText(prompt: String = "Введите текст"): String {
         val scanner = Scanner(System.`in`)
         var input: String
         println("\nСоздание нового элемента")
         do {
-            print("Введите имя: ")
+            print("$prompt: ")
             input = scanner.nextLine()!!
             if (input.isEmpty()) {
                 println("\nОшибка!\nПустые строки не разрешены!")

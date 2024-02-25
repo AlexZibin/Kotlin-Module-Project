@@ -1,4 +1,4 @@
-class NoteList(name: String): NamedList<NoteList>(name) {
+class NoteList(name: String): NamedList<Note>(name), Processable {
     override fun process() {
         do {
             val iInput = getUserInput()
@@ -11,13 +11,13 @@ class NoteList(name: String): NamedList<NoteList>(name) {
                 println("Выход")
                 break
             }
-            println("Выбран элемент $iInput")
+            println("Выбрана заметка $iInput")
             println(this[iInput-1])
             this[iInput-1].process()
         } while (true)
     }
 
     override fun createNewItem() {
-        add(NoteList(getNonEmptyText()))
+        add(Note(getNonEmptyText("Название заметки"), getNonEmptyText("Текст заметки")))
     }
 }

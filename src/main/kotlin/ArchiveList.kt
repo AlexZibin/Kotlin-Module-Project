@@ -1,6 +1,6 @@
 //open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
 //open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
-class ArchiveList(name: String): NamedList<NoteList>(name) {
+class ArchiveList(name: String): NamedList<NoteList>(name), Processable {
     override fun process() {
         do {
             val iInput = getUserInput()
@@ -13,13 +13,13 @@ class ArchiveList(name: String): NamedList<NoteList>(name) {
                 println("Выход")
                 break
             }
-            println("Выбран элемент $iInput")
+            println("Выбран архив $iInput")
             println(this[iInput-1])
             this[iInput-1].process()
         } while (true)
     }
 
     override fun createNewItem() {
-        add(NoteList(getNonEmptyText()))
+        add(NoteList(getNonEmptyText("Имя архива")))
     }
 }
