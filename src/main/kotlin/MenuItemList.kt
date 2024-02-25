@@ -1,5 +1,7 @@
 import java.util.Scanner
 
+//open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
+//open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
 open class MenuItemList(name: String) : NamedList<MenuItemList>(name) {
     fun displayMenu(){
         if (isEmpty())
