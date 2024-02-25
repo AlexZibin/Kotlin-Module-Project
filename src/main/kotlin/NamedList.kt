@@ -1,30 +1,30 @@
 import java.util.Scanner
 
 abstract class NamedList<T> (val name: String) : ArrayList<T>() {
+    private val scanner = Scanner(System.`in`)
+
     abstract fun createNewItem()
     override fun toString(): String {
         return name + super.toString()
     }
-    fun displayMenu(){
-        if (isEmpty())
+    private fun displayMenu(){
+        if (isEmpty()) {
             println("\n(Пустой) $name:")
-        else
+        } else {
             println("\n$name:")
+        }
         println("0. Создать")
-        //super.forEach { element -> println( element) }
         forEachIndexed  { index, element -> println("${index+1}. $element") }
         println("${size + 1}. Выход")
     }
 
     fun getUserInput(): Int{
-        val scanner = Scanner(System.`in`)
-        //var correctInput = false
         var input: String
         var iInput: Int
         do {
             displayMenu()
             print("Ваш выбор: ")
-            input = scanner.nextLine()!!
+            input = scanner.nextLine()
             if (input.toIntOrNull() == null) {
                 println("\nОшибка!\nСледует вводить цифру!")
                 continue
@@ -38,18 +38,16 @@ abstract class NamedList<T> (val name: String) : ArrayList<T>() {
         } while (true)
         return iInput
     }
-    fun getNonEmptyText(prompt: String = "Введите текст"): String {
-        val scanner = Scanner(System.`in`)
+    fun getNonBlankText(prompt: String = "Введите текст"): String {
         var input: String
         println("\nСоздание нового элемента")
         do {
             print("$prompt: ")
             input = scanner.nextLine()!!
-            if (input.isEmpty()) {
+            if (input.isBlank()) {
                 println("\nОшибка!\nПустые строки не разрешены!")
                 continue
             }
-            //add(ArchiveList(input))
             break
         } while (true)
         return input

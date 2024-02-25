@@ -18,6 +18,6 @@ class NoteList(name: String): NamedList<Note>(name), Processable {
     }
 
     override fun createNewItem() {
-        add(Note(getNonEmptyText("Название заметки"), getNonEmptyText("Текст заметки")))
+        add(Note(getNonBlankText("Название заметки"), getNonBlankText("Текст заметки")))
     }
 }

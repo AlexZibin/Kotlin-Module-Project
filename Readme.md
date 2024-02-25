@@ -1,5 +1,4 @@
-# Вариант № 2 :
-open class MenuItemList(name: String) : NamedList<MenuItemList>(name)
-Пока всё работает)
+# Это мой вариант № 2 :
+Всё работает )
 
 

@@ -1,5 +1,3 @@
-//open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
-//open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
 class ArchiveList(name: String): NamedList<NoteList>(name), Processable {
     override fun process() {
         do {
@@ -20,6 +18,6 @@ class ArchiveList(name: String): NamedList<NoteList>(name), Processable {
     }
 
     override fun createNewItem() {
-        add(NoteList(getNonEmptyText("Имя архива")))
+        add(NoteList(getNonBlankText("Имя архива")))
     }
 }
