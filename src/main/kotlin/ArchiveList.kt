@@ -1,6 +1,6 @@
 //open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
 //open class MenuItemList(name: String, mainLogic: () -> Unit = ::process) : NamedList<MenuItemList>(name) {
-class ArchiveList(name: String): NamedList<ArchiveList>(name) {
+class ArchiveList(name: String): NamedList<NoteList>(name) {
     override fun process() {
         do {
             val iInput = getUserInput()
@@ -20,6 +20,6 @@ class ArchiveList(name: String): NamedList<ArchiveList>(name) {
     }
 
     override fun createNewItem() {
-        add(ArchiveList(getNonEmptyText()))
+        add(NoteList(getNonEmptyText()))
     }
 }
