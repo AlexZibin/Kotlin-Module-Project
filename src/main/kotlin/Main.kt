@@ -2,23 +2,23 @@ import java.util.Scanner
 
 fun main() {
     val list1 = MenuItemList<MenuItemList<String>>("Список архивов")
-    list1.add (MenuItemList("Элемент1"))
-    list1.add (MenuItemList("Элемент2"))
+    list1.add (MenuItemList("Архив1"))
+    list1.add (MenuItemList("Архив2"))
  //   println(list1)
     list1.process()
 }
 
 open class NamedList<T> (val name: String) : ArrayList<T>() {
     override fun toString(): String {
-        return name.toString() + super.toString()
+        return name + super.toString()
     }
 }
-open class MenuItemList<T> (name: String) : NamedList<T>(name) {
+open class MenuItemList<V> (name: String) : NamedList<V>(name) {
     fun displayMenu(){
         println("\n$name:")
         println("0. Создать")
         //super.forEach { element -> println( element) }
-        forEachIndexed  { index, element -> println("${index+1}. ${element}") }
+        forEachIndexed  { index, element -> println("${index+1}. $element") }
         println("${size + 1}. Выход")
     }
 
@@ -26,7 +26,7 @@ open class MenuItemList<T> (name: String) : NamedList<T>(name) {
         val scanner = Scanner(System.`in`)
         //var correctInput = false
         var input: String
-        var iInput: Int = -1
+        var iInput: Int
         do {
             displayMenu()
             print("Ваш выбор: ")
@@ -47,7 +47,7 @@ open class MenuItemList<T> (name: String) : NamedList<T>(name) {
 
     fun process() {
         do {
-            var iInput = getUserInput()
+            val iInput = getUserInput()
             println(iInput)
             if (iInput == 0) { // 0. Создать
                 createNewItem()
@@ -64,22 +64,22 @@ open class MenuItemList<T> (name: String) : NamedList<T>(name) {
 
     fun createNewItem() {
         val scanner = Scanner(System.`in`)
-        var input = ""
+        var input: String
         println("\nСоздание нового элемента")
         do {
             print("Введите имя: ")
             input = scanner.nextLine()!!
-            if (input.length == 0) {
+            if (input.isEmpty()) {
                 println("\nОшибка!\nИмя не должно быть пустым!")
                 continue
             }
-            add(input)
+            //add(input)
             break
         } while (true)
     }
 
-    private fun add(element: String) {
+ /*   override fun add(element: T): Boolean {
         super.add(element)
-    }
+    }*/
 }
 
